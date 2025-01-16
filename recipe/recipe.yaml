@@ -1,5 +1,5 @@
 context:
-  version: 12.4.0
+  version: "13.0.0"
 
 package:
   name: syncpack
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://registry.npmjs.org/syncpack/-/syncpack-${{ version }}.tgz
-  sha256: c94b540b2c169ed82055c8a436be05950253cdc98434d716b06573693732f8a3
+  sha256: 0dbe1b9f8159e8911094ae6b5b410a542f902b5d3d37bfb7da881335fb919871
 
 build:
   number: 0
