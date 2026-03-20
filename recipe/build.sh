@@ -2,17 +2,12 @@
 
 set -o xtrace -o nounset -o pipefail -o errexit
 
-# Create package archive and install globally
-npm pack --ignore-scripts
-npm install -ddd \
-    --global \
-    --build-from-source \
-    ${SRC_DIR}/${PKG_NAME}-${PKG_VERSION}.tgz
+export CARGO_PROFILE_RELEASE_STRIP=symbols
+export CARGO_PROFILE_RELEASE_LTO=fat
 
-# Create license report for dependencies
-pnpm install
-pnpm-licenses generate-disclaimer --prod --output-file=third-party-licenses.txt
+cargo-bundle-licenses \
+    --format yaml \
+    --output THIRDPARTY.yml
 
-tee ${PREFIX}/bin/syncpack.cmd << EOF
-call %CONDA_PREFIX%\bin\node %CONDA_PREFIX%\bin\syncpack %*
-EOF
+# build statically linked binary with Rust
+cargo install --bins --no-track --locked --root ${PREFIX} --path .
