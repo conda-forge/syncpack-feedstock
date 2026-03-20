@@ -6,20 +6,18 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://registry.npmjs.org/syncpack/-/syncpack-${{ version }}.tgz
-  sha256: 95dcbfcdcc593b3e7704450e8c4a33d5db5253936cc0c6110e28acda828cd353
+  url: https://github.com/JamieMason/syncpack/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 0bea3ddf080ec4d42243cdce7c136be118f2e1dfee87fe3073fc885f1b550ade
 
 build:
   number: 0
-  noarch: generic
 
 requirements:
   build:
-    - nodejs
-    - pnpm
-    - pnpm-licenses
-  run:
-    - nodejs
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
 
 tests:
   - script:
@@ -29,7 +27,7 @@ about:
   license: MIT
   license_file:
     - LICENSE
-    - third-party-licenses.txt
+    - THIRDPARTY.yml
   summary: Consistent dependency versions in large JavaScript Monorepos.
   homepage: https://github.com/JamieMason/syncpack
   repository: https://github.com/JamieMason/syncpack
