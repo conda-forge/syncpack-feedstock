@@ -1,5 +1,5 @@
 context:
-  version: "15.3.0"
+  version: "15.3.1"
 
 package:
   name: syncpack
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/JamieMason/syncpack/archive/refs/tags/${{ version }}.tar.gz
-  sha256: b4b74ff1bf8b8732ca0a8df35d2e61abdd91f9175ccf677114a555034086baf8
+  sha256: 3cf3a4fa96489e9072cfe23137e1f0ffded540d5c6934bdcc67a9ef419194718
 
 build:
   number: 0
